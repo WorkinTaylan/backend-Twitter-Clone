@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node --watch index",
     "server": "nodemon index",
-    "resetdb":"knex migrate:rollback && knex migrate:latest && knex seed:run",
+    "resetdb": "knex migrate:rollback && knex migrate:latest && knex seed:run",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -21,7 +21,8 @@
     "jsonwebtoken": "^9.0.0",
     "knex": "^2.4.2",
     "sqlite3": "^5.1.6",
-    "uuidv4": "^6.2.13"
+    "uuidv4": "^6.2.13",
+    "yup": "^1.0.2"
   },
   "devDependencies": {
     "cross-env": "^7.0.3",
