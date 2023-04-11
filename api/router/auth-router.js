@@ -12,7 +12,8 @@ router.post("/register", mw.checkRegisterPayload,mw.checkUnique, async (req,res,
             Phone:req.body.Phone,
             Rolename:req.body.Rolename
         })
-        res.status(201).json({message:"You have registered",user:inserted})
+        console.log(UserModel.createNewUser())
+        res.status(201).json({message:"You have registered successfully",user:inserted})
     } catch (error) {
         next(error)
     }

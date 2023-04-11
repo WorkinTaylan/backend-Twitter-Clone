@@ -1,10 +1,12 @@
 const db=require("../../data/db-config");
 const jwt=require("jsonwebtoken");
+const { v4: uuidv4 } = require("uuid");
 
 async function generateToken(user){
     const payload={
         Phone:user.Phone,
-        Username:user.Username
+        Username:user.Username,
+        Rolename:user.Rolename
     }
 
     const secret=process.env.JWT_SEC_KEY;
@@ -31,12 +33,14 @@ async function getByFilter(filter){
 }
 
 async function getById(User_id){
-    return await db("Users").where("User_id", User_id).first()
+    return await db("Users as u").leftJoin("Roles as r","u.Role_id","r.Role_id").select("u.*","r.Rolename").where("User_id", User_id).first()
 }
 
 async function createNewUser(user){
+    const User_id=uuidv4();
     const {Role_id}=await db("Roles").where("Rolename",user.Rolename).first()
     const newUser={
+        User_id,
         Username:user.Username,
         Password:user.Password,
         Email:user.Email,

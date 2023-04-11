@@ -73,7 +73,6 @@ exports.up = function(knex) {
             .onUpdate("CASCADE")
     })
     .createTable("Favs_Users", tbl=>{
-        tbl.increments("Fav_Users_id")
         tbl.integer("User_id")
             .references("User_id")
             .inTable("Users")
@@ -84,6 +83,7 @@ exports.up = function(knex) {
             .inTable("Favs")
             .onDelete("CASCADE")
             .onUpdate("CASCADE")
+        tbl.primary(["User_id","Fav_id"])
     })      
 };
 

@@ -42,6 +42,21 @@ async function restricted(req,res,next){
 
 }
 
+const roleStatusCheck=Rolename=>(req,res,next)=>{
+    try {
+        let isAdmin=req.decodedToken.Rolename===Rolename;
+        if(isAdmin){
+            next()
+        }
+        else{
+            res.status(401).json({message:`Only ${Rolename} access all values`})
+        }
+    } catch (error) {
+        next(error)
+    }
+
+}
+
 async function checkRegisterPayload(req,res,next){
     try {
         const checkPayload=await schema.validate(req.body)
@@ -72,6 +87,7 @@ async function checkUnique(req,res,next){
     } 
 }
 
+//----Login-----
 async function isExistUsername(req,res,next){
 
     try {
@@ -124,6 +140,7 @@ async function passwordLoginCheck(req,res,next){
 
 module.exports={
     restricted,
+    roleStatusCheck,
     checkRegisterPayload,
     checkUnique,
     isExistUsername,
