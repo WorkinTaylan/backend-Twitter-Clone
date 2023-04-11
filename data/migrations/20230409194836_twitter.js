@@ -38,7 +38,7 @@ exports.up = function(knex) {
         tbl.uuid("Tweet_id").primary()
         tbl.string("Content")
             .defaultTo("deneme")
-        tbl.timestamp("created_at").defaultTo(knex.fn.now())
+        tbl.timestamps(true,true)
         tbl.integer("User_id")
             .references("User_id")
             .inTable("Users")

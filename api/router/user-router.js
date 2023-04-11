@@ -15,8 +15,6 @@ router.get("/",  async(req,res,next)=>{
 
 router.get("/:User_id",userMw.checkIdIsExist, async(req,res,next)=>{
     
-    
-    
     try {
         const responseBody=await req.User
         res.status(200).json(responseBody)
@@ -25,8 +23,6 @@ router.get("/:User_id",userMw.checkIdIsExist, async(req,res,next)=>{
     } 
         
 })
-
-
 
 
 module.exports=router;
