@@ -1,4 +1,20 @@
 const db=require("../../data/db-config");
+const jwt=require("jsonwebtoken");
+
+async function generateToken(user){
+    const payload={
+        Phone:user.Phone,
+        Username:user.Username
+    }
+
+    const secret=process.env.JWT_SEC_KEY;
+
+    const option={
+        expiresIn:"1d"
+    }
+
+    return jwt.sign(payload,secret,option)
+}
 
 async function getAllUsers(){
 
@@ -43,6 +59,7 @@ async function removeUser(User_id){
 }
 
 module.exports={
+    generateToken,
     getAllUsers,
     getById,
     getByFilter,

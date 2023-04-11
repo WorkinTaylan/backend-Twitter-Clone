@@ -1,4 +1,3 @@
-const {JWT_SEC_KEY}=process.env.JWT_SEC_KEY;
 const jwt=require("jsonwebtoken");
 const yup = require("yup");
 const UserModel=require("../models/User-model")
@@ -22,20 +21,20 @@ const schema=yup.object().shape({
 
 async function restricted(req,res,next){
     try {
-        const token=req.headers.authorization;
+        let token=req.headers.authorization;
         if(token){
-            jwt.verify(token, JWT_SEC_KEY, (err, decodedJWT)=>{
+            jwt.verify(token,process.env.JWT_SEC_KEY, (err, decodeToken)=>{
                 if(err){
-                    res.status(401).json({message:"Token geçersizdir"})
+                    res.status(401).json({message:"Token is invalid"})
                 }
                 else{
-                    req.decodeToken=decodedJWT
+                    req.decodedToken=decodeToken
                     next()
                 }
             })
         }
         else{
-            res.status(401).json({message:"Token gereklidir"})
+            res.status(401).json({message:"You have to have token"})
         }
     } catch (error) {
         next(error)
@@ -43,7 +42,7 @@ async function restricted(req,res,next){
 
 }
 
-async function checkPayload(req,res,next){
+async function checkRegisterPayload(req,res,next){
     try {
         const checkPayload=await schema.validate(req.body)
         if(!checkPayload){
@@ -60,10 +59,9 @@ async function checkPayload(req,res,next){
 async function checkUnique(req,res,next){
     try {
         const {Username, Email, Phone}=req.body
-        let filteredUsername=await UserModel.getByFilter({Username:Username})
-        let filteredEmail=await UserModel.getByFilter({Email:Email})
-        let filteredPhone=await UserModel.getByFilter({Email:Phone})
-        if(filteredUsername || filteredEmail || filteredPhone){
+        let filteredUsername=await UserModel.getByFilter({Username:Username,Email:Email,Phone:Phone })
+    
+        if(filteredUsername){
             res.status(422).json({message:"Username, Email or Phone already exist"})
         }
         else{
@@ -92,6 +90,20 @@ async function isExistUsername(req,res,next){
     }
 } 
 
+async function checkLoginPayload(req,res,next){
+    try {
+        const {Username, Password}=req.body;
+        if(!Username || !Password){
+            next({status:404, message:"Please check your informations"})
+        }
+        else{
+            next()
+        }
+    } catch (error) {
+        next(error)
+    } 
+}
+
 async function passwordLoginCheck(req,res,next){
 
     try {
@@ -112,9 +124,10 @@ async function passwordLoginCheck(req,res,next){
 
 module.exports={
     restricted,
-    checkPayload,
+    checkRegisterPayload,
     checkUnique,
     isExistUsername,
+    checkLoginPayload,
     passwordLoginCheck
 
 }
