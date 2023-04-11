@@ -22,25 +22,6 @@ async function getById(Tweet_id){
     return await db("Tweets").where("Tweet_id",Tweet_id).first()
 }
 
-/* async function postTweet(){
-    let tweetData=await db("Tweets as t")
-    .leftJoin("Users as u", "t.User_id","u.User_id")
-    .select("u.*","t.*")
-
-    let newData=tweetData.map((item)=>{
-        const Tweet_id=uuidv4();
-        let TweetObj={
-            Tweet_id:Tweet_id,
-            User_id:item.User_id,
-            Username:item.Username,
-            Avatar:item.Avatar,
-            Comment:item.Comment
-        }
-        return TweetObj;
-    })
-    return newData;
-} */
-
 async function createNewTweet(tweet){
     tweet.Tweet_id=uuidv4();
     await db("Tweets").insert(tweet)
