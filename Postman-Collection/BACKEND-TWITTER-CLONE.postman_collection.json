@@ -1,0 +1,443 @@
+{
+	"info": {
+		"_postman_id": "03e6ac86-0970-4d65-bf80-062a4041c93f",
+		"name": "BACKEND-TWITTER-CLONE",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25698850"
+	},
+	"item": [
+		{
+			"name": "Auth/GetUsers",
+			"item": [
+				{
+					"name": "REGISTER",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Username\":\"Taylan\",\r\n    \"Password\":\"1234abcde\",\r\n    \"Email\":\"haha@hotmail.com\",\r\n    \"Phone\":\"1234567\",\r\n    \"Rolename\":\"User\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9001/api/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9001",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LOGIN",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Username\":\"Taylan\",\r\n    \"Password\":\"1234abcde\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9001/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9001",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LOGOUT",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9001/api/auth/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9001",
+							"path": [
+								"api",
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUsers/getById",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJQaG9uZSI6MTIzNDU2NywiVXNlcm5hbWUiOiJUYXlsYW4iLCJSb2xlbmFtZSI6IlVzZXIiLCJpYXQiOjE2ODEyOTI1NzMsImV4cCI6MTY4MTM3ODk3M30.R96z3be1LIgi_3uopcVvv76lmm11G83xT3aZXlPA80o",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:9001/api/users/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9001",
+							"path": [
+								"api",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tweets",
+			"item": [
+				{
+					"name": "getAllTweets",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJQaG9uZSI6MTIzNDU2NywiVXNlcm5hbWUiOiJUYXlsYW4iLCJSb2xlbmFtZSI6IlVzZXIiLCJpYXQiOjE2ODEyOTI1NzMsImV4cCI6MTY4MTM3ODk3M30.R96z3be1LIgi_3uopcVvv76lmm11G83xT3aZXlPA80o",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:9001/api/tweets",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9001",
+							"path": [
+								"api",
+								"tweets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PostNewTweets",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJQaG9uZSI6MTIzNDU2NywiVXNlcm5hbWUiOiJUYXlsYW4iLCJSb2xlbmFtZSI6IlVzZXIiLCJpYXQiOjE2ODEyOTI1NzMsImV4cCI6MTY4MTM3ODk3M30.R96z3be1LIgi_3uopcVvv76lmm11G83xT3aZXlPA80o",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Content\":\"Taylan tweet atıyor2\",\r\n    \"User_id\":\"2110c4a2-b559-4602-b1df-5adc377dd015\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9001/api/tweets/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9001",
+							"path": [
+								"api",
+								"tweets",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getTweetById",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJQaG9uZSI6MTIzNDU2NywiVXNlcm5hbWUiOiJUYXlsYW4iLCJSb2xlbmFtZSI6IlVzZXIiLCJpYXQiOjE2ODEyOTI1NzMsImV4cCI6MTY4MTM3ODk3M30.R96z3be1LIgi_3uopcVvv76lmm11G83xT3aZXlPA80o",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:9001/api/tweets/07301fec-09ab-47c1-8f36-0ba46a48926d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9001",
+							"path": [
+								"api",
+								"tweets",
+								"07301fec-09ab-47c1-8f36-0ba46a48926d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "putTweet",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJQaG9uZSI6MTIzNDU2NywiVXNlcm5hbWUiOiJUYXlsYW4iLCJSb2xlbmFtZSI6IlVzZXIiLCJpYXQiOjE2ODEyOTI1NzMsImV4cCI6MTY4MTM3ODk3M30.R96z3be1LIgi_3uopcVvv76lmm11G83xT3aZXlPA80o",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Content\":\"Taylan tweet atarken göz altına alınıyor\",\r\n    \"User_id\":\"2110c4a2-b559-4602-b1df-5adc377dd015\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9001/api/tweets/07301fec-09ab-47c1-8f36-0ba46a48926d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9001",
+							"path": [
+								"api",
+								"tweets",
+								"07301fec-09ab-47c1-8f36-0ba46a48926d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJQaG9uZSI6MTIzNDU2NywiVXNlcm5hbWUiOiJUYXlsYW4iLCJSb2xlbmFtZSI6IlVzZXIiLCJpYXQiOjE2ODEyOTI1NzMsImV4cCI6MTY4MTM3ODk3M30.R96z3be1LIgi_3uopcVvv76lmm11G83xT3aZXlPA80o",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:9001/api/tweets/07301fec-09ab-47c1-8f36-0ba46a48926d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9001",
+							"path": [
+								"api",
+								"tweets",
+								"07301fec-09ab-47c1-8f36-0ba46a48926d"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "FAVS",
+			"item": [
+				{
+					"name": "postFav",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJQaG9uZSI6MTIzNDU2NywiVXNlcm5hbWUiOiJUYXlsYW4iLCJSb2xlbmFtZSI6IlVzZXIiLCJpYXQiOjE2ODEyOTI1NzMsImV4cCI6MTY4MTM3ODk3M30.R96z3be1LIgi_3uopcVvv76lmm11G83xT3aZXlPA80o",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"User_id\":\"d1ab41a0-2837-11ec-8d3d-0242ac130003\",\r\n    \"Tweet_id\":\"d69b1f71-2837-11ec-8d3d-0242ac130003\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9001/api/favs/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9001",
+							"path": [
+								"api",
+								"favs",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllFavByUser_id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJQaG9uZSI6MTIzNDU2NywiVXNlcm5hbWUiOiJUYXlsYW4iLCJSb2xlbmFtZSI6IlVzZXIiLCJpYXQiOjE2ODEyOTI1NzMsImV4cCI6MTY4MTM3ODk3M30.R96z3be1LIgi_3uopcVvv76lmm11G83xT3aZXlPA80o",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:9001/api/favs/2110c4a2-b559-4602-b1df-5adc377dd015",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9001",
+							"path": [
+								"api",
+								"favs",
+								"2110c4a2-b559-4602-b1df-5adc377dd015"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllFavs",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJQaG9uZSI6MTIzNDU2NywiVXNlcm5hbWUiOiJUYXlsYW4iLCJSb2xlbmFtZSI6IlVzZXIiLCJpYXQiOjE2ODEyOTI1NzMsImV4cCI6MTY4MTM3ODk3M30.R96z3be1LIgi_3uopcVvv76lmm11G83xT3aZXlPA80o",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:9001/api/favs/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9001",
+							"path": [
+								"api",
+								"favs",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "COMMENTS",
+			"item": [
+				{
+					"name": "post newComment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJQaG9uZSI6MTIzNDU2NywiVXNlcm5hbWUiOiJUYXlsYW4iLCJSb2xlbmFtZSI6IlVzZXIiLCJpYXQiOjE2ODEyOTI1NzMsImV4cCI6MTY4MTM3ODk3M30.R96z3be1LIgi_3uopcVvv76lmm11G83xT3aZXlPA80o",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Comment\":\"Bu bir deneme yorumudur\",\r\n    \"User_id\":\"e47cf3b5-11ad-4342-aede-90763e653be1\",\r\n    \"Tweet_id\":\"c76966ed-d1f1-4107-a03e-53c4345b77c1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9001/api/comments/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9001",
+							"path": [
+								"api",
+								"comments",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getComments",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJQaG9uZSI6MTIzNDU2NywiVXNlcm5hbWUiOiJUYXlsYW4iLCJSb2xlbmFtZSI6IlVzZXIiLCJpYXQiOjE2ODEyOTI1NzMsImV4cCI6MTY4MTM3ODk3M30.R96z3be1LIgi_3uopcVvv76lmm11G83xT3aZXlPA80o",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:9001/api/comments/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9001",
+							"path": [
+								"api",
+								"comments",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
