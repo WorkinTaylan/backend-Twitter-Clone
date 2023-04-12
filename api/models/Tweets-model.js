@@ -4,7 +4,7 @@ const { v4: uuidv4 } = require("uuid");
 
 const getAllTweets=async ()=>{
 
-    const allTweets=await db("Tweets as t").leftJoin("Users as u", "t.User_id","u.User_id").select("t.Content","t.created_at","t.User_id","u.Username","u.Avatar")
+    const allTweets=await db("Tweets as t").leftJoin("Users as u", "t.User_id","u.User_id").select("t.Content","t.Tweet_id","t.created_at","t.User_id","u.Username","u.Avatar")
     return allTweets
 };
 
@@ -28,10 +28,22 @@ async function createNewTweet(tweet){
     return getById(tweet.Tweet_id)
 }
 
+async function updateTweet(Tweet_id, tweet){
+    await db("Tweets").where("Tweet_id",Tweet_id).update(tweet)
+    return await getById(Tweet_id)
+}
+
+const deleteById=async (Tweet_id)=>{
+    return await db("Tweets").where("Tweet_id",Tweet_id).del()
+}
+
+
 
 module.exports={
     getAllTweets,
     getByFilter,
     getById,
-    createNewTweet
+    createNewTweet,
+    updateTweet,
+    deleteById
 }

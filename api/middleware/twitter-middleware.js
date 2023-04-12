@@ -1,4 +1,22 @@
 const twModel=require("../models/Tweets-model");
+const UserModel=require("../models/User-model");
+
+const checkUserIdIsExist=async (req,res,next)=>{
+    const {User_id}=req.body;
+
+    try {
+        const UsersById=await UserModel.getById(User_id)
+        if(!UsersById || !UsersById.User_id){
+            res.status(404).json({message:"User not found with given Id"})
+        }
+        else{
+            
+            next()
+        }
+    } catch (error) {
+        next(error)
+    }
+}
 
 const checkIdIsExist=async (req,res,next)=>{
     const {Tweet_id}=req.params;
@@ -32,6 +50,7 @@ async function checkTweetPayload(req,res,next){
 }
 
 module.exports={
+    checkUserIdIsExist,
     checkIdIsExist,
     checkTweetPayload
 }

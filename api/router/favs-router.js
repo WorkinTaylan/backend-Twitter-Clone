@@ -4,6 +4,16 @@ const twModel=require("../models/Tweets-model");
 const {favIsExist}=require("../middleware/favs-middleware");
 
 
+router.get('/:User_id', async (req, res, next) => {
+    try {
+      const { User_id } = req.params;
+      const favs = await FavModel.getFavsByUser(User_id);
+      res.status(200).json(favs);
+    } catch (error) {
+      next(error);
+    }
+  });
+
 router.get("/", async(req,res,next)=>{
     try {
         const allFavs=await FavModel.getAllFav()
@@ -30,6 +40,6 @@ router.post("/", favIsExist, async(req,res,next)=>{
     catch (error) {
     next(error);
 }
-})
+});
 
 module.exports=router;

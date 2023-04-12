@@ -34,7 +34,7 @@ async function restricted(req,res,next){
             })
         }
         else{
-            res.status(401).json({message:"You have to have token"})
+            res.status(401).json({message:"You have to login and valid token"})
         }
     } catch (error) {
         next(error)

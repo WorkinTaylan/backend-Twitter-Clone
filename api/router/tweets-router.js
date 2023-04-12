@@ -25,7 +25,7 @@ router.get("/:Tweet_id",tweetMw.checkIdIsExist,async(req,res,next)=>{
         
 });
 
-router.post("/", tweetMw.checkTweetPayload,async(req,res,next)=>{
+router.post("/",tweetMw.checkUserIdIsExist, tweetMw.checkTweetPayload,async(req,res,next)=>{
 
     try{
         const newTweet={
@@ -39,6 +39,34 @@ router.post("/", tweetMw.checkTweetPayload,async(req,res,next)=>{
     next(error);
 }
 });
+
+router.put("/:Tweet_id",tweetMw.checkIdIsExist ,tweetMw.checkTweetPayload,async(req,res,next)=>{
+
+    try{
+        const newTweet={
+            Content:req.body.Content,
+            User_id:req.body.User_id
+        }
+        const inserted= await twModel.updateTweet(req.params.Tweet_id,newTweet)
+        res.status(201).json(inserted) 
+    } 
+    catch (error) {
+    next(error);
+}
+});
+
+router.delete("/:Tweet_id", tweetMw.checkIdIsExist,async(req,res,next)=>{
+
+    try{
+        await twModel.deleteById(req.params.Tweet_id)
+        res.status(200).json({message:`Deleted tweet ${req.params.Tweet_id}`}) 
+    } 
+    catch (error) {
+    next(error);
+}
+});
+
+
 
 /*
 
