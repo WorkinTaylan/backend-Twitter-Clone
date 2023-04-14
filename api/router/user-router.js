@@ -1,6 +1,6 @@
 const router=require("express").Router();
 const userModel=require("../models/User-model");
-const userMw=require("../middleware/user-middleware")
+const userMw=require("../middleware/user-middleware");
 
 router.get("/",  async(req,res,next)=>{
     

@@ -1,15 +1,16 @@
 const db=require("../../data/db-config");
 const jwt=require("jsonwebtoken");
 const { v4: uuidv4 } = require("uuid");
+const {JWT_SEC_KEY}=require("../config/index")
 
 async function generateToken(user){
     const payload={
-        Phone:user.Phone,
+        Subject:user.User_id,
         Username:user.Username,
         Rolename:user.Rolename
     }
 
-    const secret=process.env.JWT_SEC_KEY;
+    const secret=JWT_SEC_KEY;
 
     const option={
         expiresIn:"1d"
@@ -23,13 +24,13 @@ async function getAllUsers(){
     return await db("Users");
 }
 
-async function getByFilter(filter){
+async function getByFilter(filter){ //password alma!!
     let user= await db("Users as u")
         .leftJoin("Roles as r", "u.Role_id", "r.Role_id")
         .select("u.*", "r.Rolename")
         .where(filter).first()
     
-    return user;
+        return user;
 }
 
 async function getById(User_id){
@@ -47,8 +48,9 @@ async function createNewUser(user){
         Phone:user.Phone,
         Role_id:Role_id
     }
-    const insertedId=await db("Users").insert(newUser)
-    return await getByFilter({"u.User_id":insertedId[0]});
+    // eslint-disable-next-line no-unused-vars
+    const [insertedId]=await db("Users").insert(newUser)
+    return await getByFilter({"u.Username":newUser.Username});
 
 }
 

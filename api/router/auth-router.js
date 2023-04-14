@@ -3,7 +3,7 @@ const mw=require("../middleware/auth-middleware");
 const UserModel=require("../models/User-model");
 const bcrypt=require("bcryptjs");
 
-router.post("/register", mw.checkRegisterPayload,mw.checkUnique, async (req,res,next)=>{
+router.post("/register", mw.checkRegisterPayload, mw.checkUnique, async (req,res,next)=>{
     try {
         const inserted=await UserModel.createNewUser({
             Username:req.body.Username,
@@ -12,7 +12,8 @@ router.post("/register", mw.checkRegisterPayload,mw.checkUnique, async (req,res,
             Phone:req.body.Phone,
             Rolename:req.body.Rolename
         })
-        res.status(201).json({message:"You have registered successfully",user:inserted})
+        //let filterInserted=delete inserted.Password
+        res.status(201).json(inserted)
     } catch (error) {
         next(error)
     }

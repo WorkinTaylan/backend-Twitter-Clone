@@ -22,6 +22,10 @@ server.use("/api/tweets", mw.restricted, tweetsRouter)
 server.use("/api/favs", mw.restricted, favsRouter)
 server.use("/api/comments", mw.restricted, commentsRouter)
 
+server.get("/", (req,res)=>{
+    res.status(200).json({message:"Server is running"})
+});
+
 // eslint-disable-next-line no-unused-vars
 server.use((err, req, res, next) => {
     res.status(err.status || 500).json({

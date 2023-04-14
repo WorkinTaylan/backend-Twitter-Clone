@@ -13,6 +13,6 @@ module.exports={
     testing:{
         ...sharedConfig,
         connection:{filename:"./data/test.db3"},
-        seeds:{directory:"./seeds"},
+        seeds:{directory:"./data/seeds"},
     },
 };

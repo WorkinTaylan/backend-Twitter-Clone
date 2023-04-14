@@ -7,8 +7,8 @@ const defaultRoles=[
   {Rolename:"User"}
 ]
 const defaultUsers=[
-  {User_id:"ce9e87e0-2837-11ec-8d3d-0242ac130003", Username:"Scooby-Doo", Password:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c", Email:"scooby@Doo.com", Phone:53253253253, Role_id:1},
-  {User_id:"d1ab41a0-2837-11ec-8d3d-0242ac130003", Username:"Shaggy", Password:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c", Email:"shaggy@mail.com", Phone:55555555, Role_id:2}
+  {User_id:"ce9e87e0-2837-11ec-8d3d-0242ac130003", Username:"Scooby-Doo", Password:"$2y$08$U47ZyrsCBOgZGRWRvq7NIujl2SmoZHAnM9NVUNZyDlR/AF6Cn2/HW", Email:"scooby@Doo.com", Phone:53253253253, Role_id:1}, //password=Scooby123
+  {User_id:"d1ab41a0-2837-11ec-8d3d-0242ac130003", Username:"Shaggy", Password:"$2y$08$xAOcQeco9meH3xnuIcbh.uuNYmFmFit7ZyIeDFRRmFqzEwZ9Drraa", Email:"shaggy@mail.com", Phone:55555555, Role_id:2}
 ]
 
 const defaultTweets=[

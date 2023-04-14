@@ -72,19 +72,6 @@ exports.up = function(knex) {
             .onDelete("CASCADE")
             .onUpdate("CASCADE")
     })
-    .createTable("Favs_Users", tbl=>{
-        tbl.integer("User_id")
-            .references("User_id")
-            .inTable("Users")
-            .onDelete("CASCADE")
-            .onUpdate("CASCADE")
-        tbl.integer("Fav_id")
-            .references("Fav_id")
-            .inTable("Favs")
-            .onDelete("CASCADE")
-            .onUpdate("CASCADE")
-        tbl.primary(["User_id","Fav_id"])
-    })      
 };
 
 /**

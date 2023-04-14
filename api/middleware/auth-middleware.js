@@ -42,14 +42,17 @@ async function restricted(req,res,next){
 
 }
 
-const roleStatusCheck=Rolename=>(req,res,next)=>{
+const roleStatusCheck=Rolename=> async (req,res,next)=>{
     try {
-        let isAdmin=req.decodedToken.Rolename===Rolename;
-        if(isAdmin){
-            next()
+        
+        if(req.decodedToken.Rolename!==Rolename){
+            next({
+                status:403,
+                message:`Only ${Rolename} access all values`
+            });
         }
         else{
-            res.status(401).json({message:`Only ${Rolename} access all values`})
+            next()
         }
     } catch (error) {
         next(error)
